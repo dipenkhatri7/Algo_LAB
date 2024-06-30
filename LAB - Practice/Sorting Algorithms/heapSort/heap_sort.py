@@ -5,20 +5,21 @@ import time
 def heapSort(A):
     buildMaxHeap(A)
     heapSize = len(A) - 1
-    for i in range(heapSize, 1, -1):
-        A[1], A[i] = A[i], A[1]
+    for i in range(heapSize, 0, -1):
+        A[0], A[i] = A[i], A[0]
         heapSize -= 1
-        maxHeapify(A, 1, heapSize)
+        maxHeapify(A, 0, heapSize)
     return A
 
 def buildMaxHeap(A):
     heapSize = len(A) - 1
-    for i in range(heapSize//2, 0, -1):
+    for i in range(heapSize//2, -1, -1):
         maxHeapify(A, i, heapSize)
         
 def maxHeapify(A, i, heapSize):
-    left = 2*i
-    right = 2*i + 1
+    left = 2*i + 1
+    right = 2*i + 2
+    largest = i
     
     if left <= heapSize and A[left] > A[i]:
         largest = left
